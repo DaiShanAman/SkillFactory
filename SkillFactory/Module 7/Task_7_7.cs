@@ -9,7 +9,7 @@ namespace SkillFactory.Module_7
 			string[] addresses = { "Космонавтов, 8", "Пушкина, дом Колотушкина", "Проспект Мира, 21" }
 			public Delivery()
 			{
-				address = "адрес неустановлен";
+				address = "адрес не установлен";
 			}
 			public abstract void DeliverTo();
 		}
