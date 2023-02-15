@@ -1,6 +1,6 @@
 ﻿namespace SkillFactory.Module_6
 {
-    class Taks_6_5
+    class Task_6_5
     {
         //6.6.2
         class User

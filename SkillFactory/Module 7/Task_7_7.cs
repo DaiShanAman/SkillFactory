@@ -1,12 +1,12 @@
 namespace SkillFactory.Module_7
 {
-	class Taks_7_7
+	class Task_7_7
 	{
 		abstract class Delivery
 		{
 			protected string address;
 			public string Address { get; set; }
-			string[] addresses = { "Космонавтов, 8", "Пушкина, дом Колотушкина", "Проспект Мира, 21" }
+			public string[] addresses = { "Космонавтов, 8", "Пушкина, дом Колотушкина", "Проспект Мира, 21" };
 			public Delivery()
 			{
 				address = "адрес не установлен";
@@ -67,7 +67,7 @@ namespace SkillFactory.Module_7
 			{
 				Address = addresses[0];
 			}
-			public override void Deliver()
+			public override void DeliverTo()
 			{
 				Console.WriteLine($"Товар доставлен по адресу нахождения магазина {Address}"); ;
 			}
@@ -110,15 +110,15 @@ namespace SkillFactory.Module_7
 			}
 		}
 
-		static class ProductExtensions
-		{
-			public static double GetPriceOfProduct(this Product temp)
-			{
-				Console.WriteLine($"Цена товара {temp.Price} рублей");
-				double result = temp.Price;
-				return result;
-			}
-		}
+	//	static class ProductExtensions
+	//	{
+	//		public static double GetPriceOfProduct(this Product temp)
+	//		{
+	//			Console.WriteLine($"Цена товара {temp.Price} рублей");
+	//			double result = temp.Price;
+	//			return result;
+	//		}
+	//	}
 
 
 		class Order<TDelivery> where TDelivery : Delivery
@@ -137,11 +137,6 @@ namespace SkillFactory.Module_7
 			public void DisplayAddress()
 			{
 				Console.WriteLine(Delivery.Address);
-			}
-			public T DisplayNumber()
-			{
-				Console.WriteLine($"Номер заказа: {number}");
-				return number;
 			}
 		}
 	}

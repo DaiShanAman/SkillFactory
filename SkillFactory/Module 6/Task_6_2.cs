@@ -1,6 +1,6 @@
 ﻿namespace SkillFactory.Module_6
 {
-    class Taks_6_2
+    class Task_6_2
     {
        class Rectangle
         {

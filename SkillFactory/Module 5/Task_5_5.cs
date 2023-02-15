@@ -1,6 +1,6 @@
 ﻿namespace SkillFactory.Module_5
 {
-    class Taks_5_5
+    class Task_5_5
     {
         public static void Main()
         {
