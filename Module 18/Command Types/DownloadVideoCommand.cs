@@ -6,12 +6,12 @@ namespace Module18.Types
 {
     class DownloadVideoCommand : ICommand
     {
-        private readonly Video _video;
+        private readonly string _videoUrl;
         private readonly string _outputFilePath;
 
-        public DownloadVideoCommand(Video video, string outputFilePath)
+        public DownloadVideoCommand(string videoUrl, string outputFilePath)
         {
-            _video = video;
+            _videoUrl = videoUrl;
             _outputFilePath = outputFilePath;
         }
 
@@ -20,14 +20,14 @@ namespace Module18.Types
             var youtube = new YoutubeClient().Videos;
             try
             {
-                var streamManifest = await youtube.Streams.GetManifestAsync(_video.Url);
+                var streamManifest = await youtube.Streams.GetManifestAsync(_videoUrl);
                 var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
                 var stream = await youtube.Streams.GetAsync(streamInfo);
                 if (streamInfo != null)
                 {
-                    Console.WriteLine($"Загрузка видео {_video.Url}...");
-                    await youtube.Streams.DownloadAsync(streamInfo, $"video.{streamInfo.Container}");
-                    Console.WriteLine($"Видео загружено в {_outputFilePath}");
+                    Console.WriteLine($"Загрузка видео {_videoUrl}...");
+                    await youtube.Streams.DownloadAsync(streamInfo, $"{_outputFilePath}{streamInfo.Container}");
+                    Console.WriteLine($"Видео загружено в {_outputFilePath}{streamInfo.Container}");
                 }
             }
             catch (Exception ex)
@@ -38,8 +38,9 @@ namespace Module18.Types
                 Console.WriteLine($"Метод: {ex.TargetSite}");
                 Console.WriteLine($"Трассировка стека: {ex.StackTrace}");
             }
-            // послесловие, у меня не отрабатывает и везде кидает исключение что видео недоступно (оно доступно, прям щас смотрю)
-            // скорее всего это система моя на работе блочит, проверить поэтому не можу, но уверен что работает, если не работает - бейте меня палками - заслужил
+            // послесловие с вопросом, у меня если бы я не сделал вот этот прикол со скачивание в "загрузки" юзера, то видео бы скачивалось в ...SkillFactory\Module 18\bin\Debug\net6.0
+            // вроде как и не проблема, но кажется мне что, с учетом того, что в уроках такие вопросы прямо в корне работали и все скачивали, а не на три уровня ниже в bin\Debug\net6
+            // короче вопрос как сделать проще или вот так как есть норм и катит?
         }
     }
 

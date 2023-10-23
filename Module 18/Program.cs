@@ -15,7 +15,8 @@ class Program
         await commandInvoker.RunAsync();
 
         // скачивание
-        var downloadVideoCommand = new DownloadVideoCommand(getVideoInfoCommand.GetVideo(), "video.mp4");
+        string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
+        var downloadVideoCommand = new DownloadVideoCommand(videoUrl, $"{downloadsPath}\\video.");
         commandInvoker.SetCommand(downloadVideoCommand);
 
         await commandInvoker.RunAsync();
