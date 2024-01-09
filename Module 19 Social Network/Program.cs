@@ -26,7 +26,6 @@ namespace Module_19_Social_Network
         public static UserOutcomingMessageView userOutcomingMessageView;
         public static AddingFriendView addingFriendView;
         public static UserFriendView userFriendView;
-
         static void Main(string[] args)
         {
             userService = new UserService();
